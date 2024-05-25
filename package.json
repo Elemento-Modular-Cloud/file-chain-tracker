@@ -1,0 +1,19 @@
+{
+  "name": "elemento-blockchain-volume-tracket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Francesco Chpl <francesco@chpl.it>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard --fix"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "uuid": "^9.0.1",
+    "web3": "^4.9.0"
+  }
+}
