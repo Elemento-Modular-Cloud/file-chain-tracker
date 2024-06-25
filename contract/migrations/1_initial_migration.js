@@ -1,5 +1,5 @@
-const EBVT = artifacts.require('EBVT')
+const FCT = artifacts.require('FCT')
 
 module.exports = function (deployer) {
-  deployer.deploy(EBVT)
+  deployer.deploy(FCT)
 }
