@@ -17,7 +17,7 @@ npx hardhat test
 npx hardhat ignition deploy ./ignition/modules/Lock.js
 
 npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js --network localhost
+npx hardhat ignition deploy ./ignition/modules/FCT.js --network localhost
 
 ```
 

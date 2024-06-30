@@ -1,0 +1,1 @@
+npx hardhat ignition deploy --network localhost ./ignition/modules/FCT.js

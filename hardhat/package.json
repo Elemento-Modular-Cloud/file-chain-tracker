@@ -9,11 +9,14 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+  "dependencies": {
+    "@nomicfoundation/hardhat-ignition": "^0.15.5",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "ethers": "^5.0.0",
     "hardhat": "^2.22.5"
   },
-  "dependencies": {
+  "devDependencies": {
     "standard": "^17.1.0"
   }
 }
