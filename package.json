@@ -5,14 +5,17 @@
   "author": "Francesco Chpl <francesco@chpl.it>",
   "license": "MIT",
   "scripts": {
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "test": "jest"
   },
   "devDependencies": {
     "standard": "^17.1.0"
   },
   "dependencies": {
+    "apisauce": "^3.0.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "jest": "^29.7.0",
     "uuid": "^9.0.1",
     "web3": "^4.9.0"
   }
