@@ -1,4 +1,4 @@
-# ebvt ~ elemento-blockchain-volume-tracket
+# FCT ~ file-chain-tracker
 
 ID
 name
@@ -20,3 +20,20 @@ il server espone
 
 
 se ho 3 server che espongono lo stesso volume, come faccio a sapere quale ha il volume piu aggiornato?
+
+
+# TODO's
+
+- aggiornare smart contract per insert/list/update dei volumi
+- testare hardat in locale
+- testare polygon in locale
+- compilare smart contract e deploy in locale
+- aggiornare API per contattare smart contract e invocare metodi
+- scrivere suite test per testare tutto il giro
+
+
+# Updates 2024-06
+
+- aggiornamento contratto per rimuovere i volumi piu vecchi di 1 anno e liberare risorse
+  server per evitare alti costi di gas fee
+- 
