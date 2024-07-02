@@ -1,5 +1,15 @@
 # FCT ~ file-chain-tracker
 
+# How to start the project
+
+1. npx hardhat node
+2. cd hardhat &&
+  npx hardhat ignition deploy --network localhost ./ignition/modules/FCT.js
+3. set address contract into api/index.js eg. 0x5FbDB2315678afecb367f032d93F642f64180aa3
+4. cd api && nodemon
+5. run cli project eg. node cli.js
+
+
 ID
 name
 location (ip address)
@@ -22,18 +32,17 @@ il server espone
 se ho 3 server che espongono lo stesso volume, come faccio a sapere quale ha il volume piu aggiornato?
 
 
-# TODO's
+# TODO
 
-- aggiornare smart contract per insert/list/update dei volumi
-- testare hardat in locale
 - testare polygon in locale
-- compilare smart contract e deploy in locale
-- aggiornare API per contattare smart contract e invocare metodi
-- scrivere suite test per testare tutto il giro
 
+# Q&A
 
-# Updates 2024-06
+- aggiornamento contratto per rimuovere i volumi piu vecchi di 1 anno e liberare risorse a livello di Smart Contract per evitare alti costi di gas fee
 
-- aggiornamento contratto per rimuovere i volumi piu vecchi di 1 anno e liberare risorse
-  server per evitare alti costi di gas fee
-- 
+- serve tracciare CHI?? ha effettuato modifiche su un determinato file? eg. address del wallet che ha effettuato update
+
+- come gestire il lock su un file o volume a livello di blockchain
+
+- allineamento dei server di storage in P2P
+
