@@ -10,7 +10,7 @@ const api = create({
 })
 
 describe('Volume API Tests', () => {
-  let createdVolumeId
+  let createdFileId
   const name = generateRandomTechName()
   const checksum = crypto.createHash('sha512').update('checksum').digest('hex')
   const updatedChecksum = crypto.createHash('sha512').update('newChecksum').digest('hex')
@@ -29,7 +29,7 @@ describe('Volume API Tests', () => {
     expect(response.data.receipt).toHaveProperty('transactionHash')
     expect(response.data.receipt).toHaveProperty('blockNumber')
 
-    createdVolumeId = response.data.receipt.volumeId
+    createdFileId = response.data.receipt.fileId
   })
 
   it('should list all volumes and find the created volume', async () => {
@@ -39,7 +39,7 @@ describe('Volume API Tests', () => {
     expect(Array.isArray(volumes)).toBe(true)
 
     // Find the created volume in the list
-    const createdVolume = volumes.find(volume => volume.id === createdVolumeId)
+    const createdVolume = volumes.find(volume => volume.id === createdFileId)
     expect(createdVolume).toBeDefined()
     expect(createdVolume.name).toBe(name)
   })
@@ -51,7 +51,7 @@ describe('Volume API Tests', () => {
       newChecksum: updatedChecksum
     }
 
-    const response = await api.patch(`/update/${createdVolumeId}`, updateData)
+    const response = await api.patch(`/update/${createdFileId}`, updateData)
     expect(response.ok).toBe(true)
     expect(response.data.success).toBe(true)
     expect(response.data.receipt).toHaveProperty('transactionHash')
@@ -59,7 +59,7 @@ describe('Volume API Tests', () => {
   })
 
   it('should check the updated checksum', async () => {
-    const response = await api.get(`/history/${createdVolumeId}`)
+    const response = await api.get(`/history/${createdFileId}`)
     expect(response.ok).toBe(true)
     const history = response.data
     expect(Array.isArray(history)).toBe(true)

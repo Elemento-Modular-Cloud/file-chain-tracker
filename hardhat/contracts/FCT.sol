@@ -17,7 +17,7 @@ contract FCT {
     // Mapping from volume ID to an array of versions
     mapping(string => Volume[]) private volumeHistory;
     mapping(string => bool) private checksumExists; // Mapping to track existing checksums
-    string[] private volumeIds; // Array to keep track of all volume IDs
+    string[] private fileIds; // Array to keep track of all volume IDs
 
     event VolumeAdded(string id, string name, string ip, address owner, uint256 timestamp, string checksum);
     event VolumeUpdated(string id, string name, string ip, address owner, uint256 timestamp, string checksum);
@@ -46,7 +46,7 @@ contract FCT {
 
         // Add the volume ID to the list if it is a new volume
         if (volumeHistory[id].length == 1) {
-            volumeIds.push(id);
+            fileIds.push(id);
         }
 
         emit VolumeAdded(id, name, ip, owner, timestamp, checksum);
@@ -75,22 +75,23 @@ contract FCT {
 
     // Method to list all the volumes with their latest versions
     function listLatestVolumes() public view returns (Volume[] memory) {
-        uint256 count = volumeIds.length;
+        uint256 count = fileIds.length;
         Volume[] memory latestVolumes = new Volume[](count);
         for (uint256 i = 0; i < count; i++) {
-            string memory id = volumeIds[i];
+            string memory id = fileIds[i];
             latestVolumes[i] = volumeHistory[id][volumeHistory[id].length - 1];
         }
         return latestVolumes;
     }
 
     // Method to remove volumes older than one year
+    // sfoltire il passato, perche se un volume piu vecchio di 1 anno ma non usato, poche history, voglio tenerlo
     function removeOldVolumes() public onlyOwner {
         uint256 currentTime = block.timestamp;
         uint256 i = 0;
 
-        while (i < volumeIds.length) {
-            string memory id = volumeIds[i];
+        while (i < fileIds.length) {
+            string memory id = fileIds[i];
             Volume[] storage volumes = volumeHistory[id];
             bool volumeRemoved = false;
 
@@ -107,9 +108,9 @@ contract FCT {
             }
 
             if (volumes.length == 0) {
-                volumeHistory[id] = volumeHistory[volumeIds[volumeIds.length - 1]];
-                volumeIds[i] = volumeIds[volumeIds.length - 1];
-                volumeIds.pop();
+                volumeHistory[id] = volumeHistory[fileIds[fileIds.length - 1]];
+                fileIds[i] = fileIds[fileIds.length - 1];
+                fileIds.pop();
             } else {
                 i++;
             }

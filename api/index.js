@@ -91,7 +91,7 @@ app.post('/create', async (req, res) => {
 
     // Convert BigInt fields to strings in the receipt
     const parsedReceipt = {
-      volumeId: id,
+      fileId: id,
       transactionHash: receipt.transactionHash,
       transactionIndex: Number(receipt.transactionIndex),
       blockHash: receipt.blockHash,
