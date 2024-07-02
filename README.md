@@ -1,6 +1,6 @@
 # FCT ~ file-chain-tracker
 
-# How to start the project
+## How to run the project
 
 1. npx hardhat node
 2. cd hardhat &&
@@ -9,6 +9,8 @@
 4. cd api && nodemon
 5. run cli project eg. node cli.js
 
+
+## Notes
 
 ID
 name
@@ -32,11 +34,11 @@ il server espone
 se ho 3 server che espongono lo stesso volume, come faccio a sapere quale ha il volume piu aggiornato?
 
 
-# TODO
+## TODO
 
 - testare polygon in locale
 
-# Q&A
+## Q&A
 
 - aggiornamento contratto per rimuovere i volumi piu vecchi di 1 anno e liberare risorse a livello di Smart Contract per evitare alti costi di gas fee
 
