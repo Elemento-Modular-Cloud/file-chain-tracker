@@ -21,7 +21,7 @@ const contract = new web3.eth.Contract(abi, contractAddress)
 
 app.get('/list', async (req, res) => {
   try {
-    const rawVolumes = await contract.methods.listLatestVolumes().call()
+    const rawVolumes = await contract.methods.listLatestFile().call()
     const volumes = rawVolumes.map(volume => {
       return {
         id: volume.id,
@@ -43,7 +43,7 @@ app.get('/history/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-    const rawVolumes = await contract.methods.getVolumeHistory(id).call()
+    const rawVolumes = await contract.methods.getFileHistory(id).call()
     const volumes = rawVolumes.map(volume => {
       return {
         id: volume.id,
@@ -74,7 +74,7 @@ app.post('/create', async (req, res) => {
     const txObject = {
       from: account.address,
       to: contractAddress,
-      data: contract.methods.insertVolume(id, name, ip, owner, checksum).encodeABI(),
+      data: contract.methods.trackNewFile(id, name, ip, owner, checksum).encodeABI(),
       gas: gasLimit,
       gasPrice: web3.utils.toWei('10', 'gwei')
     }
@@ -138,7 +138,7 @@ app.patch('/update/:id', async (req, res) => {
     const txObject = {
       from: account.address,
       to: contractAddress,
-      data: contract.methods.updateVolume(id, name, ip, newChecksum).encodeABI(),
+      data: contract.methods.updateFileMetadata(id, name, ip, newChecksum).encodeABI(),
       gas: gasLimit,
       gasPrice: web3.utils.toWei('10', 'gwei')
     }
@@ -187,21 +187,6 @@ app.patch('/update/:id', async (req, res) => {
       res.status(500).json({ error: 'General error', stack: error.message })
     }
   }
-})
-
-app.get('/mount', (req, res) => {
-  res.json({ message: 'Mount successful' })
-})
-
-app.get('/unmount', (req, res) => {
-  res.json({ message: 'Unmount successful' })
-})
-
-app.post('/data', (req, res) => {
-  const inputData = req.body
-  console.log(inputData)
-
-  res.json({ message: 'Data received', data: inputData })
 })
 
 app.listen(port, () => {
